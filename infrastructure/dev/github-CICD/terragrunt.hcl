@@ -14,4 +14,13 @@ include "env" {
 
 inputs = {
   env             = include.env.locals.env
+  usergroup_name = dependency.kubernetes-addons.outputs.admin_group_name
+}
+
+dependency "kubernetes-addons" {
+  config_path = "../kubernetes-addons"
+
+  mock_outputs = {
+    admin_group_name            = "demo"
+  }
 }
