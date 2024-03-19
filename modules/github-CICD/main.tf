@@ -22,7 +22,9 @@ resource "aws_iam_user_policy" "cicd_user_policy" {
           "ecr:PutImage",
           "ecr:InitiateLayerUpload",
           "ecr:UploadLayerPart",
-          "ecr:CompleteLayerUpload"
+          "ecr:CompleteLayerUpload",
+          "ecr:GetAuthorizationToken",
+          "eks:DescribeCluster"
         ],
         Resource = "*"
       }
