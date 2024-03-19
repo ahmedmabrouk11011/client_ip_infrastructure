@@ -41,3 +41,15 @@ resource "aws_secretsmanager_secret_version" "ecr_user_keys_secret_version" {
     secret_key = aws_iam_access_key.cicd_user_key.secret
   })
 }
+
+
+# New resource for adding the user to the group
+resource "aws_iam_group_membership" "cicd_user_group_membership" {
+  name = "${var.env}-cicd-user-group-membership"
+
+  users = [
+    aws_iam_user.cicd_user.name
+  ]
+
+  group = var.usergroup_name
+}
